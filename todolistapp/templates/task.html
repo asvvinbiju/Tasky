@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      .bar {
+        height: 70px;
+        font-size: 40px;
+        font-family: Impact;
+        color: cadetblue;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .icon{
+        font-size: 25px;
+      }
+      .head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .column{
+        width: max-content;
+        height:max-content;
+      }
+      .btns {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .contents{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        width: max-content;
+        height: max-content;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid bg-light border bar">
+      <button class="btn btn-light border" style="margin-left: 20px" id="addtaskbtn">
+        <i class="bi bi-calendar-plus-fill"></i>
+      </button>
+      <h1 style="margin-right: 20px">Tasky</h1>
+    </div>
+    <div class="row">
+      {% for i in data %}
+      <div class="col-0 column">
+        <div class="card" style="width: 18rem; margin: 20px;">
+          <div class="card-head m-3 head">
+            <div class="div contents">
+              <h3 class="card-title">{{i.task_name}}</h3>
+              <h5 class="card-subtitle text-muted">{{i.date}}</h5>
+            </div>
+            <div class="div btns">
+              <a class="btn" href="deletetask/{{i.id}}">
+                <i class="bi bi-trash icon"></i>
+              </a>
+              <a class="btn" href="completetask/{{i.id}}">
+                <i class="bi bi-calendar-check-fill"></i>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+              <p class="card-text">{{i.description}}</p>
+              <h6><i>{{i.status}}</i></h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var button = document.getElementById('addtaskbtn');
+            button.addEventListener( "click", function(){
+                window.location.href = 'addtask';
+            });
+        });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
